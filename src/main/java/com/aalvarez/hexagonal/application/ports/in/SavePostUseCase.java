@@ -4,6 +4,6 @@ import com.aalvarez.hexagonal.domain.model.Post;
 
 public interface SavePostUseCase {
 
-    Post savePost(Post post) throws Exception;
+    Post save(Post post);
 
 }

@@ -3,7 +3,6 @@ package com.aalvarez.hexagonal.adapters.controllers;
 import com.aalvarez.hexagonal.adapters.controllers.dto.PostDTO;
 import com.aalvarez.hexagonal.application.ports.in.SavePostUseCase;
 import com.aalvarez.hexagonal.domain.model.Post;
-import com.aalvarez.hexagonal.domain.model.User;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +27,8 @@ public class PostController {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> savePost(@Valid @RequestBody PostDTO postDTO) throws Exception {
-
-        Post post = modelMapper.map(postDTO, Post.class);
-        savePostUseCase.savePost(post);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-
+    public ResponseEntity<?> savePost(@Valid @RequestBody PostDTO postDTO){
+        return new ResponseEntity<>(savePostUseCase.save(modelMapper.map(postDTO, Post.class)), HttpStatus.CREATED);
     }
 
 

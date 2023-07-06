@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class PostDTO {
 
-    private Long id;
-    @NotBlank(message = "comment cannot be empty.")
+    @NotBlank(message = "no puede ser vacío.")
     private String comment;
     private Long id_user;
 

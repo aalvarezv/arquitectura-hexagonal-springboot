@@ -1,18 +1,15 @@
 package com.aalvarez.hexagonal.adapters.configuration;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.aalvarez.hexagonal.adapters.exceptions.dto.ErrorDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.ObjectError;
-import com.aalvarez.hexagonal.adapters.exceptions.GenericException;
+import com.aalvarez.hexagonal.adapters.exceptions.TemplateException;
 import com.aalvarez.hexagonal.adapters.exceptions.NotFoundException;
 import com.aalvarez.hexagonal.adapters.exceptions.dto.ExceptionDTO;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +26,7 @@ public class RestErrorHandlerConfig {
      */
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ExceptionDTO> runTimeExceptionHandler(RuntimeException ex){
-        ExceptionDTO error = ExceptionDTO.builder().code("999").message("Capturada la RuntimeException lanzada").build();
+        ExceptionDTO error = ExceptionDTO.builder().code(String.valueOf(ex.hashCode())).message(ex.getMessage()).build();
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -49,13 +46,14 @@ public class RestErrorHandlerConfig {
     }
 
     /**
-     * Manejo de error custom, en este caso GenericException.
-     * En este caso recibe el HttpStatus cuando se dispara el error
+     * Manejo de error custom, en este caso TemplateException.
+     * Este recibe el HttpStatus cuando se dispara el error, así puede enviar
+     * cualquier código de error http
      * @param ex
      * @return ResponseEntity<ErrorDTO>
      */
-    @ExceptionHandler(value = GenericException.class)
-    public ResponseEntity<ExceptionDTO> genericExceptionHandler(GenericException ex){
+    @ExceptionHandler(value = TemplateException.class)
+    public ResponseEntity<ExceptionDTO> templateExceptionHandler(TemplateException ex){
         ExceptionDTO error = ExceptionDTO.builder()
                 .code(ex.getCode())
                 .message(ex.getMessage())
@@ -66,7 +64,7 @@ public class RestErrorHandlerConfig {
 
 
     /**
-     * Manejo de errores capturados por @Valid.
+     * Manejo de errores capturados por la anotación @Valid.
      * @param ex
      * @return ResponseEntity<?>
      */

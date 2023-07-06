@@ -13,7 +13,7 @@ public class PostService implements SavePostUseCase {
     private SavePostPort savePostPort;
 
     @Override
-    public Post savePost(Post post) {
+    public Post save(Post post) {
         return this.savePostPort.save(post);
     }
 
