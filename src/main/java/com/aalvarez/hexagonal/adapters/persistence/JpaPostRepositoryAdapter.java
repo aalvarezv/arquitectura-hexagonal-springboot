@@ -45,8 +45,10 @@ public class JpaPostRepositoryAdapter implements GetPostPort, SavePostPort {
 
     @Override
     public List<Post> findAll() {
+
         return jpaPostRepository.findAll().stream()
                 .map(post -> modelMapper.map(post, Post.class))
                 .collect(Collectors.toList());
+
     }
 }

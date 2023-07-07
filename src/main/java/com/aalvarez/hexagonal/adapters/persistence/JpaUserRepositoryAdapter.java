@@ -7,7 +7,6 @@ import com.aalvarez.hexagonal.application.ports.out.SaveUserPort;
 import com.aalvarez.hexagonal.domain.model.User;
 import com.aalvarez.hexagonal.application.ports.out.GetUserPort;
 import com.aalvarez.hexagonal.adapters.persistence.entities.UserEntity;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Slf4j
 public class JpaUserRepositoryAdapter implements GetUserPort, SaveUserPort {
 
     private JpaUserRepository jpaUserRepository;
@@ -38,9 +36,11 @@ public class JpaUserRepositoryAdapter implements GetUserPort, SaveUserPort {
 
     @Override
     public List<User> findAll() {
+
         return jpaUserRepository.findAll()
                 .stream().map(user -> modelMapper.map(user, User.class))
                 .collect(Collectors.toList());
+
     }
 
     @Override

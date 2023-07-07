@@ -16,12 +16,12 @@ import org.springframework.context.annotation.DependsOn;
 @ComponentScan(basePackages = "com.aalvarez.hexagonal")
 public class AppConfig {
 
-    @Bean("UserService")
+    @Bean()
     public UserService userService(GetUserPort getUserPort, SaveUserPort saveUserPort){
         return new UserService(getUserPort, saveUserPort);
     }
 
-    @Bean("JpaUserRepositoryAdapter")
+    @Bean()
     public JpaUserRepositoryAdapter jpaUserRepositoryAdapter(JpaUserRepository jpaUserRepository, ModelMapper modelMapper){
         return new JpaUserRepositoryAdapter(jpaUserRepository, modelMapper);
     }
