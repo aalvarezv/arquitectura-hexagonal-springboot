@@ -3,7 +3,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class PostDTO {
+public class PostRequest {
 
     @NotBlank(message = "no puede ser vacío.")
     private String comment;

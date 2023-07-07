@@ -21,6 +21,4 @@ public class PostEntity {
     @JoinColumn(name = "id_user")
     private UserEntity user;
 
-
-
 }

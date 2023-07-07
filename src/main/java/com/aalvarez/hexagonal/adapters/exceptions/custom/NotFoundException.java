@@ -1,4 +1,4 @@
-package com.aalvarez.hexagonal.adapters.exceptions;
+package com.aalvarez.hexagonal.adapters.exceptions.custom;
 
 import lombok.Getter;
 import lombok.Setter;

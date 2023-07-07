@@ -1,4 +1,4 @@
-package com.aalvarez.hexagonal.adapters.configuration;
+package com.aalvarez.hexagonal.adapters.exceptions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,15 +9,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.http.HttpStatus;
-import com.aalvarez.hexagonal.adapters.exceptions.TemplateException;
-import com.aalvarez.hexagonal.adapters.exceptions.NotFoundException;
+import com.aalvarez.hexagonal.adapters.exceptions.custom.TemplateException;
+import com.aalvarez.hexagonal.adapters.exceptions.custom.NotFoundException;
 import com.aalvarez.hexagonal.adapters.exceptions.dto.ExceptionDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class RestErrorHandlerConfig {
+public class ErrorHandlerConfig {
 
     /**
      * Manejo de error con clase Existente en este caso RuntimeException

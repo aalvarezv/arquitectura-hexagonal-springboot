@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class Post {
 
+    private Long id;
     private String comment;
     private User user;
 

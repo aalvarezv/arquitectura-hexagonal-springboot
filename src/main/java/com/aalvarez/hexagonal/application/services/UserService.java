@@ -10,9 +10,8 @@ import java.util.List;
 
 public class UserService implements GetUserUseCase, SaveUserUseCase {
 
-    private final GetUserPort getUserPort;
-
-    private final SaveUserPort saveUserPort;
+    private GetUserPort getUserPort;
+    private SaveUserPort saveUserPort;
 
     public UserService(GetUserPort getUserPort, SaveUserPort saveUserPort) {
         this.getUserPort = getUserPort;
