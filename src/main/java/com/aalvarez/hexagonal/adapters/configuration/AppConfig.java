@@ -17,8 +17,8 @@ import org.springframework.context.annotation.DependsOn;
 public class AppConfig {
 
     @Bean()
-    public UserService userService(GetUserPort getUserPort, SaveUserPort saveUserPort){
-        return new UserService(getUserPort, saveUserPort);
+    public UserService userService(GetUserPort getUserPort, SaveUserPort saveUserPort, JpaUserRepository jpaUserRepository){
+        return new UserService(getUserPort, saveUserPort, jpaUserRepository);
     }
 
     @Bean()

@@ -30,13 +30,6 @@ public class JpaPostRepositoryAdapter implements GetPostPort, SavePostPort {
     @Override
     public Post save(Post post){
 
-        Optional<UserEntity> user = jpaUserRepository.findById(post.getUser().getId());
-        if(user.isEmpty()){
-            throw new NotFoundException("444", "No existe un usuario con id "+post.getUser().getId(), "El mensaje se ha generado con una excepción custom");
-        }
-
-        post.setUser(modelMapper.map(user, User.class));
-        
         PostEntity postEntity = modelMapper.map(post, PostEntity.class);
 
         return modelMapper.map(jpaPostRepository.save(postEntity), Post.class);

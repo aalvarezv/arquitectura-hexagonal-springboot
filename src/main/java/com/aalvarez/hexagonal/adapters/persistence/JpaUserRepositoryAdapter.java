@@ -27,10 +27,7 @@ public class JpaUserRepositoryAdapter implements GetUserPort, SaveUserPort {
     @Override
     public User findById(Long id) {
 
-        UserEntity optUser = this.jpaUserRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("333", "Usuario id "+id+" no existe", "Comentario adicional"));
-
-        return modelMapper.map(optUser, User.class);
+        return modelMapper.map(this.jpaUserRepository.findById(id), User.class);
 
     }
 
